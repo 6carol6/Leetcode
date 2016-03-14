@@ -24,6 +24,7 @@ public:
                 }
             }
         }
+        evenp->next = NULL;
         oddp->next = evenh;
         return oddh;
     }
