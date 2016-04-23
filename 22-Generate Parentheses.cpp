@@ -12,7 +12,7 @@ private:
                 str += ')';
                 stk.pop();
             }
-            cout << str << endl;
+            //cout << str << endl;
             ans.push_back(str);
             return;
         }
@@ -35,7 +35,7 @@ public:
 
 int main(){
     Solution* s = new Solution;
-    vector<string> vec = s->generateParenthesis(3);
+    vector<string> vec = s->generateParenthesis(4);
     for(int i = 0; i < vec.size(); i++){
         cout << vec[i] << endl;
     }
