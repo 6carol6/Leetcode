@@ -14,6 +14,7 @@ public:
                 ans.push_back(tmp);
             }
         }
+        if(cnt == 1) ans.push_back(1);
         reverse(ans.begin(), ans.end());
         return ans;
     }
