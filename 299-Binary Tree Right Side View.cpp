@@ -20,16 +20,15 @@ private:
         while(!queue.empty()){
             int cnt = queue.size();
             ans.push_back(queue[cnt-1]->val);
-            deque<TreeNode*> tmp;
             for(int i = 0; i < cnt; i++){
-                if(queue[i]->left){
-                    tmp.push_back(queue[i]->left);
+                if(queue[0]->left){
+                    queue.push_back(queue[0]->left);
                 }
-                if(queue[i]->right){
-                    tmp.push_back(queue[i]->right);
+                if(queue[0]->right){
+                    queue.push_back(queue[0]->right);
                 }
+                queue.pop_front();
             }
-            queue = deque(tmp);
         }
     }
 public:
