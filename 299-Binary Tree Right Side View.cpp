@@ -9,7 +9,7 @@
  */
 
 #include <deque>
- 
+
 class Solution {
 private:
     vector<int> ans;
