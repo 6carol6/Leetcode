@@ -1,30 +1,30 @@
 class Solution {
 private:
-    int min(vector<vector<int>>& vec){
+    
+    int min(vector<int>& ans, vector<int>& idx, vector<int>& primes){
         int m = 1000001;
-        for(int i = 0; i < vec.size(); i++){
-            if(vec[i][0] < m) m = vec[i][0];
+        int index = 0;
+        for(int i = 0; i < idx.size(); i++){
+            if(m > (ans[idx[i]]*primes[idx[i]])){
+                m = ans[idx[i]]*primes[idx[i]];
+                index = i;
+            }
         }
-        for(int i = 0; i < vec.size(); i++){
-            if(m == vec[i][0]) vec[i].erase(vec[i].begin());
+        for(int i = 0; i < idx.size(); i++){
+            if(m == ans[idx[i]]*primes[idx[i]]) idx[i]++;
         }
+        //idx[index]++;
         return m;
     }
 public:
     int nthSuperUglyNumber(int n, vector<int>& primes) {
-        vector<vector<int>> list;
-        for(int i = 0; i < primes.size(); i++){
-            vector<int> tmp;
-            tmp.push_back(1);
-            list.push_back(tmp);
+        vector<int> ans;
+        vector<int> idx(primes.size(), 0);
+        ans.push_back(1);
+        
+        for(int i = 1; i < n; i++){
+            ans.push_back(min(ans, idx, primes));
         }
-        int ans = 1;
-        while(n--){
-            int ans = min(list);
-            for(int i = 0; i < primes.size(); i++){
-                list[i].push_back(ans*primes[i]);
-            }
-        }
-        return ans;
+        return ans[n-1];
     }
 };

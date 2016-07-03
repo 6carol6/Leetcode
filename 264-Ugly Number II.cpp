@@ -1,23 +1,27 @@
-#include <vector>
 class Solution {
 private:
-    int min(int a, int b){
-        return a<b?a:b;
+    
+    int min(vector<int>& ans, vector<int>& idx, vector<int>& primes){
+        int m = 1100000000;
+        for(int i = 0; i < idx.size(); i++){
+            if(m > (ans[idx[i]]*primes[i])){
+                m = ans[idx[i]]*primes[i];
+            }
+        }
+        for(int i = 0; i < idx.size(); i++){
+            if(m == ans[idx[i]]*primes[i]) idx[i]++;
+        }
+        return m;
     }
 public:
-    int nthUglyNumber(int n) {
-        int ans;
-        vector<int> v2, v3, v5;
-        v2.push_back(1); v3.push_back(1); v5.push_back(1);
-        while(n--){
-            ans = min(v2[0], min(v3[0], v5[0]));
-            if(v2[0] == ans) v2.remove(v2.begin());
-            if(v3[0] == ans) v3.remove(v3.begin());
-            if(v5[0] == ans) v5.remove(v5.begin());
-            v2.push_back(ans*2);
-            v3.push_back(ans*3);
-            v5.push_back(ans*5);
+    int nthSuperUglyNumber(int n, vector<int>& primes) {
+        vector<int> ans;
+        vector<int> idx(primes.size(), 0);
+        ans.push_back(1);
+        
+        for(int i = 1; i < n; i++){
+            ans.push_back(min(ans, idx, primes));
         }
-        return ans;
+        return ans[n-1];
     }
 };
