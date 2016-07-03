@@ -2,16 +2,16 @@ class Solution {
 private:
     
     int min(vector<int>& ans, vector<int>& idx, vector<int>& primes){
-        int m = 1000001;
-        int index = 0;
+        int m = 1100000000;
+        //int index = 0;
         for(int i = 0; i < idx.size(); i++){
-            if(m > (ans[idx[i]]*primes[idx[i]])){
-                m = ans[idx[i]]*primes[idx[i]];
-                index = i;
+            if(m > (ans[idx[i]]*primes[i])){
+                m = ans[idx[i]]*primes[i];
+          //      index = i;
             }
         }
         for(int i = 0; i < idx.size(); i++){
-            if(m == ans[idx[i]]*primes[idx[i]]) idx[i]++;
+            if(m == ans[idx[i]]*primes[i]) idx[i]++;
         }
         //idx[index]++;
         return m;
