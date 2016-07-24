@@ -21,7 +21,7 @@ public:
     }
 };
 
-//O(nlogn)
+//O(nlogn) WA
 #include<memory.h>
 class Solution {
 public:
